@@ -1,4 +1,4 @@
-name: C/C++ AppImage
+name: Python GTK AppImage
 
 on:
   push:
@@ -8,31 +8,35 @@ on:
 
 jobs:
   build-appimage:
-
     runs-on: ubuntu-latest
 
     steps:
       - uses: actions/checkout@v3
-      
-      - name: install dependencies
+
+      - name: install runtime dependencies
         run: |
           sudo apt-get update
-          sudo apt-get install -y qtbase5-dev qtbase5-dev-tools qtdeclarative5-dev cmake
-          
-      - name: configure
-        run: cmake . -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=/usr
-        
-      - name: build
-        run: make -j`nproc`  install DESTDIR=AppDir
-        
-      - name: Build AppImage
+          sudo apt-get install -y python3 python3-gi gir1.2-gtk-3.0 libgtk-3-0 libglib2.0-bin
+
+      - name: prepare AppDir
+        run: |
+          mkdir -p AppDir/usr/bin
+          cp ml4w-hyprland AppDir/usr/bin/
+          chmod +x AppDir/usr/bin/ml4w-hyprland
+
+          # Desktop file & icon
+          mkdir -p AppDir/usr/share/applications
+          mkdir -p AppDir/usr/share/icons/hicolor/256x256/apps
+          cp com.ml4w.hyprlandsettings.desktop AppDir/usr/share/applications/
+          cp resources/logo.png AppDir/usr/share/icons/hicolor/256x256/apps/com.ml4w.hyprlandsettings.png
+
+      - name: build AppImage
         uses: AppImageCrafters/build-appimage-action@master
-        env:
-          UPDATE_INFO: gh-releases-zsync|AppImageCrafters|qt-hello-world|latest|*x86_64.AppImage.zsync
         with:
           recipe: AppImageBuilder.yml
-          
-      - uses: actions/upload-artifact@v4
+
+      - name: upload AppImage
+        uses: actions/upload-artifact@v4
         with:
-          name: AppImage
+          name: hyprland-settings-appimage
           path: ./*.AppImage
