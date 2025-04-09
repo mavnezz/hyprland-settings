@@ -1,0 +1,6 @@
+[Desktop Entry]
+Type=Application
+Name=Hyprland Settings
+Exec=ml4w-hyprland
+Icon=com.ml4w.hyprlandsettings
+Categories=Settings;Utility;
