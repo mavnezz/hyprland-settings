@@ -22,8 +22,11 @@ jobs:
       - name: 📁 Prepare AppDir
         run: |
           mkdir -p AppDir/usr/bin
-          cp -r src/* AppDir/usr/bin/
-          chmod +x AppDir/usr/bin/ml4w-hyprland
+          cp src/*.py AppDir/usr/bin/
+          chmod +x AppDir/usr/bin/main.py
+
+          echo -e '#!/bin/bash\nexec python3 /usr/bin/main.py "$@"' > AppDir/usr/bin/hyprland-settings
+          chmod +x AppDir/usr/bin/hyprland-settings
 
           # Desktop entry and icon
           mkdir -p AppDir/usr/share/applications
