@@ -32,7 +32,7 @@ jobs:
           mkdir -p AppDir/usr/share/applications
           mkdir -p AppDir/usr/share/icons/hicolor/256x256/apps
           cp com.ml4w.hyprlandsettings.desktop AppDir/usr/share/applications/
-          cp resources/icon.png AppDir/usr/share/icons/hicolor/256x256/apps/com.ml4w.hyprlandsettings.png
+          cp src/resources/icon.png AppDir/usr/share/icons/hicolor/256x256/apps/com.ml4w.hyprlandsettings.png
 
       - name: 🏗️ Build AppImage
         uses: AppImageCrafters/build-appimage-action@master
