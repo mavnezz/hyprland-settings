@@ -17,7 +17,7 @@ jobs:
       - name: install dependencies
         run: |
           sudo apt-get update
-          sudo apt-get install -y qt5-default qtdeclarative5-dev cmake
+          sudo apt-get install -y qtbase5-dev qtbase5-dev-tools qtdeclarative5-dev cmake
           
       - name: configure
         run: cmake . -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=/usr
