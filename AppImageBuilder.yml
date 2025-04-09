@@ -36,4 +36,4 @@ AppDir:
 AppImage:
   arch: x86_64
   update-information: "gh-releases-zsync|mavnezz|hyprland-settings|latest|*AppImage.zsync"
-  sign-key: null
+  file_name: ML4W_Hyprland_Settings-x86_64.AppImage
