@@ -37,3 +37,7 @@ AppImage:
   arch: x86_64
   update-information: "gh-releases-zsync|mavnezz|hyprland-settings|latest|*AppImage.zsync"
   file_name: ML4W_Hyprland_Settings-x86_64.AppImage
+
+script:
+  - apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 3B4FE6ACC0B21F32 871920D1991BC93C
+  - apt-get update
